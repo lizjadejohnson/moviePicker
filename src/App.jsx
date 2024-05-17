@@ -3,6 +3,7 @@ import './App.css'
 import MoviesContainer from './components/MoviesContainer'
 import SubmissionForm from './components/SubmissionForm'
 import Button from './components/Button'
+import NoResult from './components/NoResult'
 
 const apiKey = import.meta.env.VITE_API_KEY
 
@@ -16,6 +17,7 @@ function App() {
 
   //Initializing our ref:
   const inputRef = useRef(null);
+
 
   ////////  Function to actually get movies from TMDB using a search term  ////////////////
   const getMovies = async (searchTerm) => {
@@ -33,11 +35,19 @@ function App() {
         options
       );
       const data = await response.json();
+      console.log("Keyword search results:", data.results); // Debugging log
+        
       return data.results.map(result => result.id);
     };
 
     try {
       const keywordIDs = await getKeywordIDs(searchTerm);
+      if (keywordIDs.length === 0) {
+        //If there are no valid results, return an empty string
+        setMovies([]);
+        return;
+      }
+      //Otherwise join in an or string
       const keywordIDsString = keywordIDs.join("|");
 
       const options = {
@@ -49,10 +59,12 @@ function App() {
       };
 
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=3&sort_by=popularity.desc&vote_average.gte=6&vote_count.gte=100&with_keywords=${keywordIDsString}`,
+        `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=3&sort_by=popularity.desc&vote_average.gte=6&vote_count.gte=80&with_keywords=${keywordIDsString}`,
         options
       );
       const data = await response.json();
+      console.log("Movie search results:", data.results); // Debugging log
+      
       if (data.results.length >= 9) {
         const shuffled = data.results.sort(() => 0.5 - Math.random());
         const selectedMovies = shuffled.slice(0, 9);
@@ -93,7 +105,14 @@ function App() {
       <h1 className='siteTitle'>IN THE MOOD FOR...</h1>
       <SubmissionForm handleSearch={handleSearch} inputRef={inputRef} />
       <MoviesContainer movies={movies} />
-      <Button shuffleMovies={shuffleMovies} buttonName={"🎲Shuffle🎲"}/>
+
+      {/* Conditional render: If the movies list is NOT empty, show the shuffle button. Otherwise show the NoResult component: */}
+      {movies.length > 0 ? (
+        <Button shuffleMovies={shuffleMovies} buttonName={"🎲Shuffle🎲"} />
+      ) : (
+        <NoResult />
+      )}
+
     </div>
   );
 }

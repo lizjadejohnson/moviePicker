@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SubmissionForm = ({handleSearch, inputRef}) => {
+const SubmissionForm = ({handleSearch, inputRef, handleInputChange}) => {
   return (
     <div className='submissionForm'>
         {/* Sets our input as the inputRef */}

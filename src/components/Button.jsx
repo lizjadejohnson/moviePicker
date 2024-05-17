@@ -1,5 +1,7 @@
 import React from 'react'
 
+//onClick, shuffleMovies is called
+
 const Button = ({shuffleMovies, buttonName}) => {
   return (
     <div>

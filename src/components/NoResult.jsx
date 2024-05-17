@@ -1,5 +1,7 @@
 import React from 'react'
 
+//This displays when there are no matching keywords for whatever the user typed
+
 const NoResult = () => {
   return (
     <div className='noResult'>

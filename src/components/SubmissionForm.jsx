@@ -6,7 +6,7 @@ const SubmissionForm = ({handleSearch, inputRef}) => {
         {/* Sets our input as the inputRef */}
       <input type="text" ref={inputRef} placeholder="Enter a movie keyword" />
         {/* Runs handleSearch function on submit button: */}
-      <button onClick={handleSearch}>Search</button>
+      <button className="searchBtn" onClick={handleSearch}>Search</button>
     </div>
   )
 }

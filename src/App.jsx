@@ -12,7 +12,7 @@ function App() {
   const [movies, setMovies] = useState([]);
 
   //State to hold our search term:
-  const [searchTerm, setSearchTerm] = useState('computer');
+  const [searchTerm, setSearchTerm] = useState('');
 
   //Initializing our ref:
   const inputRef = useRef(null);
@@ -83,13 +83,14 @@ function App() {
   //Setting up a useEffect to have an inquiry run once upon render--
   // This will run on the first render but not on subsquent renders (because of the empty dependencies list)
   useEffect(() => {
-    getMovies(searchTerm);
+    getMovies("computer");
   }, [
     // empty list of dependencies here means this runs only once!
   ]);
 
   return (
     <div className="App">
+      <h1 className='siteTitle'>IN THE MOOD FOR...</h1>
       <SubmissionForm handleSearch={handleSearch} inputRef={inputRef} />
       <MoviesContainer movies={movies} />
       <Button shuffleMovies={shuffleMovies} buttonName={"🎲Shuffle🎲"}/>

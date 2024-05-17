@@ -41,21 +41,30 @@
   color: #888;
 }
 
+.siteTitle {
+  text-align: center;
+  color: #333; /* Dark grey color for the title */
+  font-family: "Playfair Display", serif;
+}
+
+input {
+  padding: 9px;
+  border-radius: 8px;
+}
 
 .moviesContainer {
   width: 80%; /* Adjust this value to make the container smaller or larger */
   margin: 0 auto; /* This centers the container horizontally */
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Keeps your 3-column layout */
+  grid-template-columns: repeat(3, 1fr); /* Keeps a 3-column layout */
   gap: 20px; /* Keeps space between grid items */
-  padding: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   box-sizing: border-box; /* Ensures padding does not affect the overall width */
-  border: 1px solid #ddd; /* Light border for container */
-  border-radius: 8px; /* Rounded corners */
 }
 
 .movieCard {
-  background-color: #fff; /* White background for each result */
+  background-color: #fff; /* White background */
   border: 1px solid #ddd; /* Light border for each result */
   border-radius: 8px; /* Rounded corners */
   overflow: hidden; /* Ensures the content fits within the borders */
@@ -93,7 +102,9 @@
   padding: 10px;
   font-size: 16px; /* Readable font size */
   text-align: center;
-  color: #333; /* Dark grey color for the movie titles */
+  color: #4d4d4d; /* Dark grey color for the movie titles */
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
 }
 
 /* //////////////////////// */
@@ -146,4 +157,18 @@
   height: 50px; /* Adjust height as needed */
   /* Enable scrolling for overflowing content */
   overflow-y: auto;
+}
+
+
+/*   MEDIA QUERIES */
+@media (max-width: 600px) {
+  .moviesContainer {
+    grid-template-columns: 1fr; /* 1 column for small screens */
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .moviesContainer {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+  }
 }

@@ -1,0 +1,149 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.moviesContainer {
+  width: 80%; /* Adjust this value to make the container smaller or larger */
+  margin: 0 auto; /* This centers the container horizontally */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Keeps your 3-column layout */
+  gap: 20px; /* Keeps space between grid items */
+  padding: 50px;
+  box-sizing: border-box; /* Ensures padding does not affect the overall width */
+  border: 1px solid #ddd; /* Light border for container */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.movieCard {
+  background-color: #fff; /* White background for each result */
+  border: 1px solid #ddd; /* Light border for each result */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensures the content fits within the borders */
+  justify-content: center;
+}
+
+.movieCard:hover {
+  cursor: pointer;
+}
+
+.coverArt {
+  background-color: #bbb; /* Placeholder background color, can be removed if actual images are used */
+  width: 100%; /* Adjusted to cover the full width of the result correctly */
+  position: relative; /* Needed for absolute positioning of the image */
+}
+
+.coverArt::before {
+  content: "";
+  display: block;
+  padding-top: 150%; /* Adjust this value based on the desired aspect ratio */
+  /* For a 2:3 aspect ratio, padding-top: (3/2) * 100% = 150% */
+}
+
+.coverArt img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; /* Explicitly center the image */
+}
+
+.movieTitle {
+  padding: 10px;
+  font-size: 16px; /* Readable font size */
+  text-align: center;
+  color: #333; /* Dark grey color for the movie titles */
+}
+
+/* //////////////////////// */
+
+/* POP OUT CARD: */
+.popOutCard {
+  display: flex;
+  flex-direction: column; /* Organizes the content vertically */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 30vw; /* Max width */
+  min-width: 280px; /* Min width to ensure readability */
+  max-height: 90vh; /* Uses vh to ensure it's relative to viewport height */
+  box-sizing: border-box;
+  overflow-y: auto; /* Allows scrolling only if necessary */
+}
+
+.popOutCard img {
+  max-width: 50%; /* Adjust the width of the image to take up less space */
+  max-height: 20%; /* Limit the height of the image */
+  object-fit: cover; /* Keeps the aspect ratio of the image */
+  border-radius: 8px;
+  margin-left: 25%;
+}
+
+/* Hide any overflowing content */
+.popOutMovieTitle,
+.popOutMovieOverview,
+.popOutMovieRating {
+  font-family: "Playfair Display", serif;
+  width: 80%; /* Ensures text doesn't overflow the card's padding */
+  padding: 0 10px; /* Adds padding to the sides for text */
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden; /* Hide any overflowing content */
+  overflow-wrap: break-word; /* Break words to prevent overflow */
+  white-space: normal; /* Allow text to wrap */
+  /* Add fixed height to maintain consistent size */
+  height: 50px; /* Adjust height as needed */
+  /* Enable scrolling for overflowing content */
+  overflow-y: auto;
+}

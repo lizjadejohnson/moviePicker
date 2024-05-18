@@ -126,3 +126,42 @@ function App() {
 }
 
 export default App
+
+
+
+import React, { useReducer } from 'react';
+
+const startingNumber = { count: 0 };
+
+//Just like the switch statements we're used to, we define various cases.
+//Reducer functions accept the current state and an action object as arguments when we call it.
+//From these two arguments, the reducer calculates what the next state value should be and returns it
+//For example, if we pass in a state of 0 and an action of "increment" then it will look at what
+//the increment case is supposed to do. It takes the state and adds 1. So 0+1.
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+};
+
+const Counter = () => {
+  //Initialize state: You define the initial state and pass it to useReducer along with the reducer function.
+  //Later, dispatching will allow us to update this state based on our action type
+  const [state, dispatch] = useReducer(reducer, startingNumber);
+
+  //The dispatch function updates the state based on the action type
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;

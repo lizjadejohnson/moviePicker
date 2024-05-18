@@ -145,6 +145,7 @@ input {
   max-height: 90vh; /* Uses vh to ensure it's relative to viewport height */
   box-sizing: border-box;
   overflow-y: auto; /* Allows scrolling only if necessary */
+  color: #4d4d4d; /* Dark grey color for the movie titles */
 }
 
 .popOutCard img {
@@ -173,6 +174,7 @@ input {
   height: 50px; /* Adjust height as needed */
   /* Enable scrolling for overflowing content */
   overflow-y: auto;
+  color: #4d4d4d; /* Dark grey color for the movie titles */
 }
 
 
